@@ -11,7 +11,6 @@ public class App {
   List<WiseSaying> wiseSayings;
 
 
-
   // App 생성자 추가
   public App() {
     scanner = new Scanner(System.in);
@@ -37,6 +36,10 @@ public class App {
         int id = Integer.parseInt(cmd.split("=")[1]);
 
         actionDelete(id);
+      } else if (cmd.startsWith("수정?id=")) {
+        int id = Integer.parseInt(cmd.split("=")[1]);
+
+        actionModify(id);
       }
     }
     scanner.close();
@@ -80,4 +83,32 @@ public class App {
     else System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
   }
 
+  void actionModify(int id) {
+    WiseSaying foundWiseSaying = null;
+
+    for (WiseSaying wiseSaying : wiseSayings) {
+      if (wiseSaying.getId() == id) {
+        foundWiseSaying = wiseSaying;
+        break;
+      }
+    }
+
+    if (foundWiseSaying == null) {
+      System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+      return;
+    }
+
+    System.out.println("명언(기존) : %s".formatted(foundWiseSaying.getContent()));
+    System.out.print("명언 : ");
+    String content = scanner.nextLine();
+
+    System.out.println("작가(기존) : %s".formatted(foundWiseSaying.getAuthor()));
+    System.out.print("작가 : ");
+    String author = scanner.nextLine();
+
+    foundWiseSaying.setContent(content);
+    foundWiseSaying.setAuthor(author);
+
+    System.out.println("%d번 명언이 수정되었습니다.".formatted(id));
+  }
 }
