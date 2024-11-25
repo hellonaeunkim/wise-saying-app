@@ -33,6 +33,10 @@ public class App {
         actionAdd();
       } else if (cmd.equals("목록")) {
         actionList();
+      } else if (cmd.startsWith("삭제?id=")) {
+        int id = Integer.parseInt(cmd.split("=")[1]);
+
+        actionDelete(id);
       }
     }
     scanner.close();
@@ -67,6 +71,13 @@ public class App {
     for (WiseSaying wiseSaying : wiseSayings.reversed()) {
       System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
     }
+  }
+
+  void actionDelete(int id) {
+    boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+
+    if (removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));
+    else System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
   }
 
 }
