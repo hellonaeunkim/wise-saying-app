@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class App {
 
-  Scanner scanner;
-  int lastId;
-  List<WiseSaying> wiseSayings;
+  private final Scanner scanner;
+  private int lastId;
+  private final List<WiseSaying> wiseSayings;
 
 
   // App 생성자 추가
@@ -45,7 +45,7 @@ public class App {
     scanner.close();
   }
 
-  WiseSaying addWiseSaying(String content, String author) {
+  private WiseSaying addWiseSaying(String content, String author) {
     int id = ++lastId;
 
     WiseSaying wiseSaying = new WiseSaying(id, content, author);
@@ -56,7 +56,7 @@ public class App {
   }
 
   // 액션 함수들
-  void actionAdd() {
+  private void actionAdd() {
     System.out.print("명언 : ");
     String content = scanner.nextLine();
     System.out.print("작가 : ");
@@ -67,7 +67,7 @@ public class App {
     System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
   }
 
-  void actionList() {
+  private void actionList() {
     System.out.println("번호 / 작가 / 명언");
     System.out.println("------------------------");
 
@@ -76,14 +76,14 @@ public class App {
     }
   }
 
-  void actionDelete(int id) {
+  private void actionDelete(int id) {
     boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
 
     if (removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));
     else System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
   }
 
-  void actionModify(int id) {
+  private void actionModify(int id) {
     WiseSaying foundWiseSaying = null;
 
     for (WiseSaying wiseSaying : wiseSayings) {

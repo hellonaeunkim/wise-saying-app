@@ -1,9 +1,9 @@
 package com.ll;
 
 public class WiseSaying {
-  int id;
-  String content;
-  String author;
+  private final int id;
+  private String content;
+  private String author;
 
   // 생성자 추가
   public WiseSaying(int id, String content, String author) {
