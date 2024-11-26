@@ -38,9 +38,7 @@ public class App {
       } else if (cmd.equals("목록")) {
         wiseSayingController.actionList(wiseSayings);
       } else if (cmd.startsWith("삭제?id=")) {
-        int id = Integer.parseInt(cmd.split("=")[1]);
-
-        wiseSayingController.actionDelete(wiseSayings, id);
+        wiseSayingController.actionDelete(wiseSayings, cmd);
       } else if (cmd.startsWith("수정?id=")) {
         int id = Integer.parseInt(cmd.split("=")[1]);
 
