@@ -8,16 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-
   private final Scanner scanner;
-  private final List<WiseSaying> wiseSayings;
   private final WiseSayingController wiseSayingController;
 
 
   // App 생성자 추가
   public App() {
     scanner = new Scanner(System.in);
-    wiseSayings = new ArrayList<>();
     wiseSayingController = new WiseSayingController();
 
   }
@@ -32,13 +29,13 @@ public class App {
       if (cmd.equals("종료")) {
         break;
       } else if (cmd.equals("등록")) {
-        wiseSayingController.actionAdd(scanner, wiseSayings);
+        wiseSayingController.actionAdd(scanner);
       } else if (cmd.equals("목록")) {
-        wiseSayingController.actionList(wiseSayings);
+        wiseSayingController.actionList();
       } else if (cmd.startsWith("삭제?id=")) {
-        wiseSayingController.actionDelete(wiseSayings, cmd);
+        wiseSayingController.actionDelete(cmd);
       } else if (cmd.startsWith("수정?id=")) {
-        wiseSayingController.actionModify(scanner, wiseSayings, cmd);
+        wiseSayingController.actionModify(scanner, cmd);
       }
     }
     scanner.close();

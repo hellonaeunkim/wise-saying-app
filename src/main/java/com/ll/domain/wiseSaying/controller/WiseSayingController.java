@@ -2,14 +2,21 @@ package com.ll.domain.wiseSaying.controller;
 
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class WiseSayingController {
-
+  private final List<WiseSaying> wiseSayings;
   private int lastId;
 
-  private WiseSaying addWiseSaying(List<WiseSaying> wiseSayings, String content, String author) {
+  // 생성자 추가
+  public WiseSayingController() {
+    this.wiseSayings = new ArrayList<>();
+    this.lastId = 0;
+  }
+
+  private WiseSaying addWiseSaying(String content, String author) {
     int id = ++lastId;
 
     WiseSaying wiseSaying = new WiseSaying(id, content, author);
@@ -19,18 +26,18 @@ public class WiseSayingController {
     return wiseSaying;
   }
   // 액션 함수들
-  public void actionAdd(Scanner scanner, List<WiseSaying> wiseSayings) {
+  public void actionAdd(Scanner scanner) {
     System.out.print("명언 : ");
     String content = scanner.nextLine();
     System.out.print("작가 : ");
     String author = scanner.nextLine();
 
-    WiseSaying wiseSaying = addWiseSaying(wiseSayings, content, author);
+    WiseSaying wiseSaying = addWiseSaying(content, author);
 
     System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
   }
 
-  public void actionList(List<WiseSaying> wiseSayings) {
+  public void actionList() {
     System.out.println("번호 / 작가 / 명언");
     System.out.println("------------------------");
 
@@ -39,7 +46,7 @@ public class WiseSayingController {
     }
   }
 
-  public void actionDelete(List<WiseSaying> wiseSayings, String cmd) {
+  public void actionDelete(String cmd) {
     int id = Integer.parseInt(cmd.split("=")[1]);
     boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
 
@@ -47,7 +54,7 @@ public class WiseSayingController {
     else System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
   }
 
-  public void actionModify(Scanner scanner,List<WiseSaying> wiseSayings, String cmd) {
+  public void actionModify(Scanner scanner, String cmd) {
     int id = Integer.parseInt(cmd.split("=")[1]);
 
     WiseSaying foundWiseSaying = null;
