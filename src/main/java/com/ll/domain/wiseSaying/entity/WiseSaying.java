@@ -1,7 +1,7 @@
 package com.ll.domain.wiseSaying.entity;
 
 public class WiseSaying {
-  private final int id;
+  private int id;
   private String content;
   private String author;
 
@@ -22,6 +22,10 @@ public class WiseSaying {
 
   public String getAuthor() {
     return author;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public void setContent(String content) {

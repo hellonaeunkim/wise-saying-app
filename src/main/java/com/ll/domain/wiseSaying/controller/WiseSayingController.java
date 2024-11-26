@@ -25,7 +25,7 @@ public class WiseSayingController {
     System.out.print("작가 : ");
     String author = scanner.nextLine();
 
-    WiseSaying wiseSaying = wiseSayingService.addWiseSaying(content, author);
+    WiseSaying wiseSaying = wiseSayingService.add(content, author);
 
     System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
   }
