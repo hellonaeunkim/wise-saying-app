@@ -9,6 +9,7 @@ public class App {
   private final Scanner scanner;
   private final WiseSayingController wiseSayingController;
   private final SystemController systemController;
+  
 
   // App 생성자 추가
   public App() {
